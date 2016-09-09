@@ -1,0 +1,41 @@
+
+/* Gif control */
+.bake-on-gif {
+	position:relative;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 640px;
+}
+.btn-anim {
+	position: absolute;
+	width: 36px;
+	height: 36px;
+	bottom: 12px;
+	right: 12px;
+	cursor: pointer;
+	padding: 0;
+	border: 0 solid #fff;
+	border-radius: 50%;
+	background-color: transparent;
+
+	/* for IE10 - no transparent background */
+	background-color: #fff;
+}
+.btn-anim:focus {
+	outline: 0 solid;
+}
+.svg-pausePlay {
+	pointer-events: none;
+	width: 36px;
+	height: 36px;
+	border-radius: 100%;
+	-webkit-transition:all .3s ease-out;
+	transition: all .3s ease-out;
+}
+.btn-anim:hover .svg-pausePlay,
+.btn-anim:focus .svg-pausePlay {
+  background-color: #fff;
+	border: 0 solid #fff;
+	box-shadow: 0 0 4px rgba(0, 83, 159, 1);
+}
