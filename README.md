@@ -1,5 +1,5 @@
 
-<h1>Late load large gifs and swap out the smaller jpg</h1>
+<h1>Late-load large gifs and add pause button</h1>
 
 Provides a pause button to meet WCAG 2 level AA (supply controls for animations which last longer than 5 seconds).
 
