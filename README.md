@@ -1,8 +1,9 @@
 
 <h1>Late load large gifs and swap out the smaller jpg</h1>
 
-<p>Provides a pause button to meet WCAG 2 level AA - Supply controls for animations which last longer than 5 seconds.</p>
+Provides a pause button to meet WCAG 2 level AA (supply controls for animations which last longer than 5 seconds).
 
+<h2>how it works</h2>
 
 Initially load a static image (.jpg) then once the page has fully loaded, swap it out for the (much) larger animated gif.
 
@@ -10,5 +11,6 @@ A pause control is added which flips between the static image and the animation 
 
 The animated gif is preloaded into memory then displayed, preventing flashes of white occuring.
 
-CodePen demo: <a href="http://codepen.io/2kool2/pen/kkNLYO">Late-load an animated gif and provide a pause button</a>
+The SVG controls used are defined in the HTML.
 
+CodePen demo: <a href="http://codepen.io/2kool2/pen/kkNLYO">Late-load an animated gif and provide a pause button</a>
