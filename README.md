@@ -5,7 +5,7 @@ Provides a pause button to meet <abbr title="Web Content Accessibility Guideline
 
 CodePen demo: <a href="http://codepen.io/2kool2/pen/kkNLYO">Late-load an animated gif and provide a pause button</a>
 
-Very small script: 556 bytes gzipped.
+Super small script: 543 bytes gzipped.
 
 <h2>How it works</h2>
 
