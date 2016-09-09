@@ -2,6 +2,7 @@
 <h1>Late load large gifs and swap out the smaller jpg</h1>
 
 Provides a pause button to meet WCAG 2 level AA (supply controls for animations which last longer than 5 seconds).
+
 CodePen demo: <a href="http://codepen.io/2kool2/pen/kkNLYO">Late-load an animated gif and provide a pause button</a>
 
 <h2>How it works</h2>
