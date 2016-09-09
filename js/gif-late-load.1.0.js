@@ -1,119 +1,139 @@
 var Gif_Load_Control = (function (window, d) {
 
-	"use strict";
+    "use strict";
 
-	// Wait until load event fires then go fetch large gifs.
-	// On gif load replace the content jpg and add a pause button.
-  
-  // If supporting IE9 then comment out requestAnimationFrame
+    // Wait until load event fires then go fetch large gifs.
+    // On gif load replace the content jpg and add a pause button.
 
-	var dataAttr = "data-gif";
-	
-	var btnClass = "btn-anim";
-	var btnOnClass = "btn-anim-on";
+    var dataAttr = "data-gif";
 
-	var svgPlayIcon = "icon-play";
-	var svgPauseIcon = "icon-pause";
-	var svgClass = "svg-pausePlay";
-	
-	var svgPlayTitle = "Play animation";
-	var svgPauseTitle = "Pause animation";
+    var btnClass = "btn-anim";
+    var btnOnClass = "btn-anim-on";
+
+    var svgPlayIcon = "icon-play";
+    var svgPauseIcon = "icon-pause";
+    var svgClass = "svg-pausePlay";
+
+    var svgPlayTitle = "Play animation";
+    var svgPauseTitle = "Pause animation";
 
 
-  var _getSVG = function (icon, clss, title) {
-    var svg = d.createElementNS("http://www.w3.org/2000/svg", "svg");
+    var _getSVG = function (icon, clss, title) {
 
-		svg.setAttribute("class", clss); // IE9 and Edge supported
+        var svg = d.createElementNS("http://www.w3.org/2000/svg", "svg");
 
-		// Prevent IE focusing on SVG
-		svg.setAttribute("focusable", "false");
-    if (title) {
-      var t = d.createElementNS("http://www.w3.org/2000/svg", "title");
-      t.textContent = title;
-      svg.appendChild(t);
-    }
-    var use = d.createElementNS("http://www.w3.org/2000/svg", "use");
-    use.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#" + icon);
-    svg.appendChild(use);
-    return svg;
-  };
+        svg.setAttribute("class", clss); // IE9 and Edge supported
 
+        // Prevent IE focusing on SVG
+        svg.setAttribute("focusable", "false");
 
-
-  var _displayImage = function(newImg, origImg) {
-
-    window.requestAnimationFrame(function() {
-			origImg.src = newImg.src;
-    });
-
-  };
+        if (title) {
+            var t = d.createElementNS("http://www.w3.org/2000/svg", "title");
+            t.textContent = title;
+            svg.appendChild(t);
+        }
+        var use = d.createElementNS("http://www.w3.org/2000/svg", "use");
+        use.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#" + icon);
+        svg.appendChild(use);
+        return svg;
+    };
 
 
-	var _toggleAnimation = function (e) {
+    var _displayImage = function (newImg, origImg) {
 
-		var target = e.target;
-		var origImg = e.target.origImg;
+        // Comment out requestAnimationFrame for IE9 support
+        window.requestAnimationFrame(function () {
+            origImg.src = newImg.src;
+        });
 
-		window.requestAnimationFrame(function() { 
-
-			if (origImg.src === origImg.staticSrc) {
-				origImg.src = origImg.animatedSrc;
-				target.className = target.className.replace(btnClass, btnClass + " " + btnOnClass);
-				target.textContent = "";
-				target.appendChild(_getSVG(svgPauseIcon, svgClass, svgPauseTitle));
-			} else {
-				origImg.src = origImg.staticSrc;
-				target.className = target.className.replace(btnClass + " " + btnOnClass, btnClass);
-				target.textContent = "";
-				target.appendChild(_getSVG(svgPlayIcon, svgClass, svgPlayTitle));
-			}
-
-		});
-	};
+    };
 
 
-	var _addPauseBtn = function (origImg) {
+    var _toggleAnimation = function (e) {
 
-		var parentObj = origImg.parentElement;
-		var btn = d.createElement("button");
+        var target = e.target;
+        var origImg = e.target.origImg;
 
-		btn.origImg = origImg;
+        // Comment out requestAnimationFrame for IE9 support
+        window.requestAnimationFrame(function () {
 
-		btn.className = btnClass + " " + btnOnClass;
-		btn.appendChild(_getSVG(svgPauseIcon, svgClass, svgPauseTitle));
-		btn.addEventListener("click", _toggleAnimation, false);
+            if (origImg.src === origImg.staticSrc) {
 
-		parentObj.appendChild(btn);
-	};
+                origImg.src = origImg.animatedSrc;
+
+                target.classList.toggle(btnOnClass);
+
+                // Or if supporting IE9:
+                // target.className = target.className.replace(btnClass, btnClass + " " + btnOnClass);
+
+                target.textContent = "";
+                target.appendChild(_getSVG(svgPauseIcon, svgClass, svgPauseTitle));
+
+            } else {
+
+                origImg.src = origImg.staticSrc;
+
+                target.classList.toggle(btnOnClass);
+
+                // Or if supporting IE9:
+                // target.className = target.className.replace(btnClass + " " + btnOnClass, btnClass);
+
+                target.textContent = "";
+                target.appendChild(_getSVG(svgPlayIcon, svgClass, svgPlayTitle));
+
+            }
+        });
+    };
 
 
-  var _requestImage = function (src, origImg) {
+    var _addPauseBtn = function (origImg) {
 
-    var newImg = new Image();
+        var parentObj = origImg.parentElement;
+        var btn = d.createElement("button");
 
-		origImg.staticSrc = origImg.src;
-		origImg.animatedSrc = src;
+        btn.origImg = origImg;
 
-    newImg.addEventListener("load", function() {
+        btn.classList.add(btnClass);
+        btn.classList.add(btnOnClass);
 
-      _displayImage(newImg, origImg);
-			_addPauseBtn(origImg);
+        // Or  if supporting IE9:
+        // btn.className = btnClass + " " + btnOnClass;
 
-    }, false);
+        btn.appendChild(_getSVG(svgPauseIcon, svgClass, svgPauseTitle));
+        btn.addEventListener("click", _toggleAnimation, false);
 
-    newImg.src = src;
-  };
+        parentObj.appendChild(btn);
+    };
 
 
-	var initialise = function () {
+    var _requestImage = function (src, origImg) {
 
-		var imgs = d.querySelectorAll("[" + dataAttr + "]");
-		var i = imgs.length;
-		while (i--) {
-			_requestImage (imgs[i].getAttribute(dataAttr), imgs[i]);
-		}
-	};
+        var newImg = new Image();
 
-	window.addEventListener("load", initialise, false);
+        origImg.staticSrc = origImg.src;
+        origImg.animatedSrc = src;
+
+        newImg.addEventListener("load", function () {
+
+            _displayImage(newImg, origImg);
+            _addPauseBtn(origImg);
+
+        }, false);
+
+        newImg.src = src;
+    };
+
+
+    var initialise = function () {
+
+        var imgs = d.querySelectorAll("[" + dataAttr + "]");
+        var i = imgs.length;
+        while (i--) {
+            _requestImage(imgs[i].getAttribute(dataAttr), imgs[i]);
+        }
+    };
+
+    // Just run initialise() if this script is post-loaded.
+    window.addEventListener("load", initialise, false);
 
 }(window, document));
