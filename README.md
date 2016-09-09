@@ -21,14 +21,14 @@ The SVGs used for control buttons are defined in the HTML.
 
 Include a link to the script:
 
-'''html
+```html
 <script src="js/gif-late-load.1.0.js"></script>
-'''
+```
 
 Add data attributes to the images:
 
-'''html
-<img  src="http://www.tesco.com/baking/2016/i/battenberg.jpg"
-      data-gif="http://www.tesco.com/baking/2016/i/battenberg.gif"
+```html
+<img  src="static.jpg"
+      data-gif="animated.gif"
       alt="Alt text description">
-'''
+```
