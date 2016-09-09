@@ -1,5 +1,5 @@
 
-<h1>Late-load large gifs and add pause button</h1>
+<h1>Late-load large gifs and add a pause button</h1>
 
 Provides a pause button to meet WCAG 2 level AA (supply controls for animations which last longer than 5 seconds).
 
@@ -13,5 +13,4 @@ A pause control is added which flips between the static image and the animation 
 
 The animated gif is preloaded into memory, then displayed, preventing flashes of white occuring.
 
-The SVG controls used are defined in the HTML.
-
+The SVGs used for control buttons are defined in the HTML.
