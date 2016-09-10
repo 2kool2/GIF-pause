@@ -28,9 +28,9 @@ Include a link to the script:
 Add data attributes to the image(s):
 
 ```html
-<img  src="static.jpg"
-      data-gif="animated.gif"
-      alt="Alt text description">
+<img src="img/static.jpg"
+     data-gif="img/animated.gif"
+     alt="Alt text description">
 ```
 
 Add an SVG definition for the play and pause buttons:
