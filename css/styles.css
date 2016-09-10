@@ -1,13 +1,15 @@
-body {font-family: sans-serif}
-h1,h2 {font-weight:100;}
+body {font-family:sans-serif; line-height:1.5; margin:1rem 2rem}
+h1,h2 {font-weight:100}
+h2 {margin-top:2rem}
+li {margin:.75rem 0}
 
 /* Gif control */
 .container {
   position:relative;
+}
+.img {
   display: block;
   width: 100%;
-  margin: 0 auto;
-  max-width: 640px;
 }
 .btn-anim {
   position: absolute;
@@ -19,7 +21,6 @@ h1,h2 {font-weight:100;}
   cursor: pointer;
   padding: 0;
   border: 0 solid #fff;
-  border-radius: 100%;
 
   /* IE10 - transparent background not allowed */
   background-color: rgba(255,255,255,.1);
@@ -30,8 +31,8 @@ h1,h2 {font-weight:100;}
 
 .svg-pausePlay {
   pointer-events: none;
-  width: 100%;
-  height: 100%;
+  width: 36px;
+  height: 36px;
   border-radius: 100%;
   overflow: hidden;
   color: blue;
